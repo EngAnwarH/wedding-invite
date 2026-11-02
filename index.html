@@ -1,0 +1,398 @@
+<title>دعوة حفل زواجي</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;500&display=swap">
+<style>
+/* Layout: one 480px cream arch-topped card on a deep emerald linen "table"; gold foil, green wax seal with a gold initial, sadu strips. */
+:root{
+  --table:#0f2f27; --paper:#f7f3e8; --field:#fbf8f0;
+  --gold:#9a7b2e; --foil-b:#bf9c43; --gold2:#d4b35a;
+  --text:#16211c; --muted:#6b6a55;
+  --tt:#efe7d2; --tm:#a9bfb3; --tgold:#d4b35a; --tfoil:#f0dc9a;   /* نصوص فوق الطاولة */
+  --on-gold:#f3ead2; --btn1:#1d5c47; --btn2:#2b7a5e;
+  --wax:#1f6b4f; --wax-d:#0b3526; --wax-l:#64b391; --wax-ini:#e2c173;
+  --env:#1d5343; --env2:#143d31; --env3:#256555;
+  --shade-c:#02110c; --hi:rgba(255,255,255,.85); --pat-o:.1; --scheme:light;
+  --err:#b3261e;
+}
+:root{
+  /* مشتقّات */
+  --fr1:color-mix(in srgb,var(--gold) 50%,transparent);
+  --fr2:color-mix(in srgb,var(--gold) 24%,transparent);
+  --ln:color-mix(in srgb,var(--gold) 30%,transparent);
+  --ln2:color-mix(in srgb,var(--gold) 16%,transparent);
+  --tint:color-mix(in srgb,var(--gold) 8%,transparent);
+  --edge:color-mix(in srgb,var(--gold) 42%,transparent);
+  --bn-mid:color-mix(in srgb,var(--table) 70%,transparent);
+  --shade:color-mix(in srgb,var(--shade-c) 17%,transparent);
+  --shade2:color-mix(in srgb,var(--shade-c) 8%,transparent);
+  --f-disp:'Amiri','Times New Roman',serif;
+  --f-ui:'IBM Plex Sans Arabic',system-ui,-apple-system,'Segoe UI',Tahoma,sans-serif;
+  --ease:cubic-bezier(.2,.7,.2,1);
+  color-scheme:var(--scheme);
+}
+/* ما يجلس فوق الطاولة مباشرة يأخذ ألوان الطاولة */
+.cd,.contact,.foot,#op,.banner .ph{--gold:var(--tgold);--foil-b:var(--tfoil);--text:var(--tt);--muted:var(--tm);
+  --fr1:color-mix(in srgb,var(--tgold) 55%,transparent);--fr2:color-mix(in srgb,var(--tgold) 28%,transparent);
+  --ln:color-mix(in srgb,var(--tgold) 34%,transparent)}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--table);scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--f-ui);font-size:16px;line-height:1.7;color:var(--tt);min-height:100%;overflow-x:hidden;-webkit-font-smoothing:antialiased;
+  background:radial-gradient(90% 40% at 50% 0%,color-mix(in srgb,var(--tgold) 14%,transparent),transparent 70%),
+  repeating-linear-gradient(45deg,rgba(255,255,255,.022) 0 2px,transparent 2px 7px),
+  repeating-linear-gradient(-45deg,rgba(0,0,0,.08) 0 1px,transparent 1px 9px),var(--table)}
+a{color:inherit}
+button,input{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.defs{position:absolute;width:0;height:0;overflow:hidden}
+
+.root{direction:rtl;position:relative}
+.table-fx{display:none}
+@media (min-width:700px){
+  .table-fx{display:block;position:fixed;inset:0;z-index:0;pointer-events:none;
+    -webkit-mask:radial-gradient(40% 70% at 50% 40%,transparent 55%,#000 100%);mask:radial-gradient(40% 70% at 50% 40%,transparent 55%,#000 100%)}
+  .table-fx::after{content:'';position:absolute;inset:0;background:var(--tgold);opacity:var(--pat-o);
+    -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56'%3E%3Cpath d='M28 3 53 28 28 53 3 28Z' fill='none' stroke='%23000' stroke-width='.8'/%3E%3Cpath d='M28 17 39 28 28 39 17 28Z' fill='none' stroke='%23000' stroke-width='.6'/%3E%3Ccircle cx='28' cy='28' r='1.6' fill='%23000'/%3E%3C/svg%3E") 0 0/56px 56px repeat;
+    mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56'%3E%3Cpath d='M28 3 53 28 28 53 3 28Z' fill='none' stroke='%23000' stroke-width='.8'/%3E%3Cpath d='M28 17 39 28 28 39 17 28Z' fill='none' stroke='%23000' stroke-width='.6'/%3E%3Ccircle cx='28' cy='28' r='1.6' fill='%23000'/%3E%3C/svg%3E") 0 0/56px 56px repeat}
+}
+.page{position:relative;z-index:1;max-width:480px;margin:0 auto;color:var(--text);
+  padding-block:28px calc(2.6rem + env(safe-area-inset-bottom,0px));padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+@media (min-width:700px){.page{padding-top:44px;max-width:680px}}
+
+/* الخلفية: صورة البشت (مقصوصة تحت الوجه) تحت طبقة خضراء شفافة */
+.bgp{position:fixed;inset:0;z-index:0;pointer-events:none;background:url("bg.jpg") center 30%/cover no-repeat}
+.bgp::after{content:'';position:absolute;inset:0;
+  background:linear-gradient(to bottom,color-mix(in srgb,var(--table) 72%,transparent),color-mix(in srgb,var(--table) 58%,transparent) 45%,color-mix(in srgb,var(--table) 84%,transparent))}
+
+/* paper */
+.paper{position:relative;isolation:isolate;border-radius:4px;color:var(--text);
+  background:radial-gradient(140% 60% at 50% 0%,var(--hi),transparent 70%),var(--paper);
+  box-shadow:0 0 0 1px var(--edge),0 1px 1px var(--shade2),0 14px 28px -16px var(--shade),0 34px 70px -34px var(--shade)}
+/* البطاقة بقوس علوي (محراب) بدل الإطار المستطيل */
+.inv{padding:84px 30px 54px;text-align:center;margin-top:10px;margin-bottom:40px;animation:settle .55s var(--ease) both;
+  border-radius:50% 50% 6px 6px / 24% 24% 6px 6px}
+@media (min-width:700px){.inv{padding:92px 42px 54px}}
+.inv::before,.inv::after{content:'';position:absolute;pointer-events:none;border-radius:inherit}
+.inv::before{inset:10px;border:1px solid var(--fr1)}
+.inv::after{inset:15px;border:1px solid var(--fr2)}
+.inv .arch-star{position:absolute;top:28px;left:50%;width:22px;height:22px;margin-left:-11px;fill:var(--gold)}
+.dua{font:700 clamp(17px,4.8vw,21px)/1.8 var(--f-disp);margin:0 auto 12px;text-wrap:balance}
+/* الأبيات: شطران متقابلان بعرض متساوٍ، وعلى الجوال كل شطر في سطر وسط البطاقة */
+.poem{display:grid;gap:0;margin:4px auto 0;font:400 17px/1.6 var(--f-disp);color:var(--text);justify-items:center}
+.poem .v{display:grid;grid-template-columns:auto;justify-content:center;gap:0 18px;text-align:center}
+.poem .v span{display:block;white-space:nowrap}
+/* البيت الأول يمينًا حرفين والثاني يبقى، ثم الكتلة كلها تُزاح حرفًا لليسار فتتوسّط */
+.poem .v:first-child{transform:translateX(2ch)}
+.poem{transform:translateX(-2ch)}
+@media (min-width:600px){.poem .v{grid-template-columns:auto auto}}
+@media (max-width:360px){.poem{font-size:15px}}
+.hosts{display:flex;align-items:center;justify-content:center;gap:8px 14px;flex-wrap:wrap;font:700 16px/1.7 var(--f-disp);margin-bottom:8px;text-wrap:balance}
+.hosts i{width:6px;height:6px;background:var(--gold);transform:rotate(45deg);flex-shrink:0}
+.l-of{font:400 16px/1.5 var(--f-disp);color:var(--muted);margin:2px 0}
+.bride{font:700 clamp(1.3rem,5.6vw,1.7rem)/1.4 var(--f-disp);overflow-wrap:anywhere;text-wrap:balance}
+.close-l{margin-top:16px;font:400 16px/1.8 var(--f-disp);color:var(--muted);text-wrap:balance}
+/* تفاصيل الحفل داخل البطاقة */
+.det{margin:24px 4px 0;padding-top:20px;border-top:1px solid var(--ln2);text-align:start}
+.det .ttl{margin-bottom:10px}
+.det .venue{justify-content:flex-start}
+.foil{color:var(--gold)}
+@supports (background-clip:text) or (-webkit-background-clip:text){
+  .foil{background:linear-gradient(100deg,var(--gold) 15%,var(--foil-b) 45%,var(--gold) 60%,var(--foil-b) 88%);
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;padding:.16em .14em .46em;margin:-.16em -.14em -.46em}
+}
+.l-intro,.l-invite{font:400 19px/1.7 var(--f-disp);color:var(--text)}
+.l-giver{font:700 26px/1.45 var(--f-disp);display:block}
+.hero-w{margin:2px 0 6px}
+.hero{font:700 clamp(1.6rem,7vw,2.2rem)/1.32 var(--f-disp);overflow-wrap:anywhere;text-wrap:balance}
+.orn{display:block;width:150px;height:14px;margin:16px auto 14px;color:var(--gold)}
+.l-mash{font:400 17px/1.7 var(--f-disp);color:var(--muted)}
+.when{margin-top:12px;font:400 19px/1.6 var(--f-disp);color:var(--text)}
+.w-eve,.w-hij{display:block}
+/* رقم اليوم داخل ميدالية دائرية */
+.w-day{display:grid;place-items:center;width:112px;height:112px;margin:12px auto 8px;border-radius:50%;
+  border:1px solid var(--fr1);outline:1px solid var(--fr2);outline-offset:-5px;background:var(--tint)}
+.w-day b{font:700 56px/1 var(--f-disp);min-width:1ch;padding-top:.08em}
+.l-hijri{margin-top:8px;font:400 15px/1.6 var(--f-ui);color:var(--muted)}
+.cseal{position:absolute;left:50%;bottom:-31px;width:62px;height:62px;margin-left:-31px;z-index:2;overflow:visible}
+.ini{font:700 40px var(--f-disp);fill:var(--wax-ini);paint-order:stroke;stroke:rgba(0,0,0,.25);stroke-width:1.2px}
+
+/* sections */
+.enc{margin-top:18px;padding:28px 22px 24px;border-radius:14px}
+.enc::before{content:'';position:absolute;inset:7px;border:1px solid var(--ln2);border-radius:9px;pointer-events:none}
+.enc::after{content:'';position:absolute;top:0;left:50%;width:90px;height:3px;transform:translateX(-50%);border-radius:0 0 3px 3px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+/* شريط سدو منسوج */
+.sadu{height:10px;margin:28px 28px 0;opacity:.55;
+  background:repeating-linear-gradient(135deg,var(--tgold) 0 4px,transparent 4px 9px),repeating-linear-gradient(45deg,var(--tgold) 0 4px,transparent 4px 9px);
+  -webkit-mask:linear-gradient(90deg,transparent,#000 18%,#000 82%,transparent);mask:linear-gradient(90deg,transparent,#000 18%,#000 82%,transparent)}
+.ttl{display:flex;align-items:center;justify-content:center;gap:12px;font:700 20px/1.4 var(--f-disp);color:var(--gold);margin-bottom:14px;text-align:center}
+.ttl::before,.ttl::after{content:'';flex:0 1 44px;height:1px;background:linear-gradient(to left,var(--fr1),transparent)}
+.ttl::after{background:linear-gradient(to right,var(--fr1),transparent)}
+.prog{display:grid}
+.pr{display:flex;align-items:baseline;gap:10px;padding:8px 2px}
+.pr dt{display:inline-flex;align-items:center;gap:9px;font:400 16px/1.5 var(--f-ui);color:var(--muted);white-space:nowrap}
+.pr dt svg{width:18px;height:18px;fill:var(--gold);flex-shrink:0;align-self:center}
+.pr::after{content:'';order:1;flex:1;min-width:14px;border-bottom:1px dotted var(--fr1);transform:translateY(-6px)}
+.pr dd{order:2;font:400 19px/1.5 var(--f-disp);text-align:end;min-width:0}
+.venue{display:flex;gap:12px;align-items:flex-start;margin-top:10px;padding-top:16px;border-top:1px solid var(--ln2)}
+.vi{width:40px;height:40px;flex-shrink:0;border-radius:50%;display:grid;place-items:center;border:1px solid var(--ln);background:var(--tint)}
+.vi svg{width:19px;height:19px;fill:var(--gold)}
+.venue>div{min-width:0}
+.vn{font:700 21px/1.45 var(--f-disp);overflow-wrap:anywhere}
+.va{font:400 16px/1.6 var(--f-ui);color:var(--muted);overflow-wrap:anywhere}
+.btns{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;min-height:50px;padding:10px 14px;border-radius:999px;
+  font:400 16px/1.3 var(--f-ui);text-decoration:none;cursor:pointer;-webkit-tap-highlight-color:transparent;text-align:center;
+  border:1px solid var(--ln);background:var(--field);color:var(--text);transition:background .2s,border-color .2s,transform .12s}
+.btn:active{transform:scale(.98)}
+.btn svg{width:18px;height:18px;fill:var(--gold);flex-shrink:0}
+.btn.solo{grid-column:1/-1}
+.btn.wa svg{fill:#25d366}
+.btn.pri{position:relative;overflow:hidden;min-height:56px;border:1px solid var(--fr1);border-radius:999px;font:700 19px/1.3 var(--f-disp);color:var(--on-gold);
+  background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,0) 45%),linear-gradient(135deg,var(--btn1),var(--btn2));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.18),inset 0 -1px 0 rgba(0,0,0,.2),0 12px 26px -12px var(--btn1)}
+.btn.pri[disabled]{opacity:.8;cursor:default}
+@media (hover:hover){.btn:not(.pri):hover{border-color:var(--fr1)}}
+
+.cd{margin:26px 4px 0;padding:18px 8px 16px;text-align:center;color:var(--text);border-radius:16px;
+  border:1px solid var(--fr1);background:color-mix(in srgb,var(--table) 72%,#000);box-shadow:inset 0 0 0 4px color-mix(in srgb,var(--table) 72%,#000),inset 0 0 0 5px var(--fr2)}
+.cd-k{font:400 15px/1.6 var(--f-ui);color:var(--muted);margin-bottom:6px}
+.cd-u{display:flex;justify-content:center;align-items:flex-start}
+.cu{flex:1;max-width:88px;position:relative}
+.cu+.cu::before{content:'';position:absolute;inset-inline-start:-3px;top:22px;width:5px;height:5px;background:var(--fr1);transform:rotate(45deg)}
+.cu b{display:flex;justify-content:center;direction:ltr;font:700 38px/1.25 var(--f-disp);color:var(--gold)}
+.cu b i{font-style:normal;display:inline-block;width:.62em;text-align:center}
+.cu span{display:block;font:400 13px/1.4 var(--f-ui);color:var(--muted);margin-top:2px}
+.cd-msg{font:700 21px/1.5 var(--f-disp);color:var(--gold);padding:4px 0}
+
+.contact{margin-top:18px}
+.contact .btn{min-height:54px;background:color-mix(in srgb,var(--table) 80%,var(--paper))}
+
+.fld{margin-top:16px}
+.fld>label{display:block;font:400 14px/1.5 var(--f-ui);color:var(--muted);margin-bottom:7px}
+.fld input{width:100%;font:400 16px/1.6 var(--f-ui);padding:12px 18px;border-radius:999px;border:1px solid var(--ln);
+  background:var(--field);color:var(--text);outline:none;transition:border-color .2s,box-shadow .2s}
+.fld input::placeholder{color:var(--muted);opacity:1}
+.fld input:focus{border-color:var(--gold);box-shadow:0 0 0 3px var(--tint)}
+.opt-l{font-size:13px}
+.err{font:400 15px/1.5 var(--f-ui);color:var(--err);margin-top:10px;text-align:center}
+.err:empty{margin-top:0}
+.send{width:100%;margin-top:16px}
+.done{text-align:center;padding:6px 0 2px}
+.done .big{font:700 25px/1.5 var(--f-disp);display:block}
+.done .ok{font:400 16px/1.7 var(--f-ui);margin-top:4px;color:var(--muted)}
+
+.foot{margin-top:34px;text-align:center;color:var(--text)}
+.foot .orn{margin:0 auto 10px;width:110px}
+.foot .tag{font:400 18px/1.7 var(--f-disp);color:var(--gold)}
+.foot .by{display:inline-flex;align-items:center;min-height:44px;font:400 13px/1.5 var(--f-ui);color:var(--muted);text-decoration:none}
+
+.toast{position:fixed;left:50%;bottom:calc(2rem + env(safe-area-inset-bottom,0px));z-index:45;transform:translate(-50%,16px);opacity:0;pointer-events:none;
+  width:max-content;max-width:calc(100% - 32px);padding:11px 18px;border-radius:12px;text-align:center;font:400 16px/1.5 var(--f-ui);
+  background:var(--paper);color:var(--text);box-shadow:0 0 0 1px var(--edge),0 14px 30px -10px var(--shade);transition:opacity .3s,transform .3s var(--ease)}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@keyframes settle{from{transform:translateY(12px) scale(.99);opacity:.6}}
+
+/* envelope opening */
+#op{position:fixed;inset:0;z-index:90;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(18px,4.4vh,38px);
+  padding:24px 16px calc(28px + env(safe-area-inset-bottom,0px));overflow:hidden;cursor:pointer;direction:rtl;color:var(--text);
+  background:radial-gradient(75% 48% at 50% 42%,var(--tint),transparent 72%),var(--table);transition:opacity .3s,visibility .3s}
+#op.out{opacity:0;visibility:hidden}
+.op-to{text-align:center;max-width:100%;padding:0 8px;transition:opacity .25s,transform .25s}
+#op.go .op-to{opacity:0;transform:translateY(-10px);transition-delay:.3s}
+.op-k{font:400 15px/1.6 var(--f-ui);color:var(--muted)}
+.op-n{font:700 clamp(28px,8.4vw,38px)/1.4 var(--f-disp);margin-top:2px;overflow-wrap:anywhere}
+.op-pm{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:4px 10px;margin-top:12px;font:400 13px/1.6 var(--f-ui);color:var(--muted)}
+.op-pm i{width:5px;height:5px;background:var(--gold);transform:rotate(45deg);flex-shrink:0}
+.env{--w:min(80vw,340px);position:relative;width:var(--w);height:calc(var(--w)*.7);flex-shrink:0;max-width:100%;perspective:900px}
+.env>*{position:absolute}
+.env-sh{left:6%;right:6%;bottom:-24px;height:36px;border-radius:50%;background:radial-gradient(closest-side,var(--shade),transparent)}
+.env-back{inset:0;border-radius:2px;background:linear-gradient(to bottom,var(--env2),var(--env) 70%);box-shadow:0 0 0 1px var(--edge)}
+.env-card{left:6%;right:6%;top:5%;height:88%;z-index:2;border-radius:2px;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:2px;padding-top:9%;
+  background:radial-gradient(140% 60% at 50% 0%,var(--hi),transparent 70%),var(--paper);box-shadow:0 0 0 1px var(--edge)}
+.env-card::before{content:'';position:absolute;inset:7px;border:1px solid var(--fr1);outline:1px solid var(--fr2);outline-offset:-5px}
+.env-card .ec-t{font:400 22px/1.3 var(--f-disp);color:var(--gold);position:relative}
+.env-card .ec-n{font:700 15px/1.4 var(--f-disp);color:var(--text);position:relative}
+.env-card .ec-o{width:90px;height:10px;color:var(--gold);position:relative}
+.op-hint{font:400 14px/1.6 var(--f-ui);color:var(--muted);text-align:center;margin-top:18px;transition:opacity .2s}
+#op.go .op-hint{opacity:0}
+.env-pocket{inset:0;width:100%;height:100%;z-index:3;overflow:visible;transition:opacity .18s ease .92s}
+.env-flap{left:0;top:0;width:100%;height:58%;z-index:4;transform-origin:50% 0;transform-style:preserve-3d;transition:transform .36s cubic-bezier(.45,0,.55,1) .3s,z-index 0s .48s}
+.env-flap svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.seal{left:50%;top:58%;width:74px;height:74px;margin:-40px 0 0 -37px;z-index:5;transition:transform .14s,opacity .2s ease .14s;animation:pulse 1.9s ease-in-out infinite}
+.seal svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+@keyframes pulse{50%{transform:scale(1.06)}}
+#op.go .seal{animation:none;transform:scale(.94);opacity:0}
+#op.go .env-flap{transform:rotateX(180deg);z-index:1}
+#op.go .env-card{animation:cardUp .48s cubic-bezier(.22,.8,.26,1) .5s both,cardZoom .34s cubic-bezier(.45,0,.35,1) 1.05s forwards}
+#op.go .env-sh,#op.go .env-back,#op.go .env-pocket{opacity:0;transition:opacity .2s ease .95s}
+@keyframes cardUp{to{transform:translateY(-62%)}}
+@keyframes cardZoom{from{transform:translateY(-62%)}to{transform:translateY(-44%) scale(1.5);opacity:0}}
+@media (prefers-reduced-motion:reduce){
+  #op{display:none}
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}
+</style>
+
+<svg class="defs" aria-hidden="true" focusable="false" width="0" height="0">
+  <defs>
+    <radialGradient id="wx" cx="36%" cy="30%" r="78%"><stop offset="0" style="stop-color:var(--wax-l)"/><stop offset=".42" style="stop-color:var(--wax)"/><stop offset="1" style="stop-color:var(--wax-d)"/></radialGradient>
+    <radialGradient id="wx2" cx="60%" cy="66%" r="70%"><stop offset="0" style="stop-color:var(--wax)"/><stop offset="1" style="stop-color:var(--wax-d)"/></radialGradient>
+    <radialGradient id="wsh"><stop offset=".55" style="stop-color:var(--shade)"/><stop offset="1" stop-color="transparent"/></radialGradient>
+    <linearGradient id="fl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--env3)"/><stop offset="1" style="stop-color:var(--env)"/></linearGradient>
+    <linearGradient id="pk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--env)"/><stop offset="1" style="stop-color:var(--env2)"/></linearGradient>
+  </defs>
+  <symbol id="corner" viewBox="0 0 48 48">
+    <path d="M44 12H26A14 14 0 0 1 12 26V44" fill="none" stroke-width="1"/>
+    <path d="M44 16H30A14 14 0 0 1 16 30V44" fill="none" stroke="currentColor" stroke-width="1"/>
+    <path d="M12 6.4 13.7 10.3 17.6 12 13.7 13.7 12 17.6 10.3 13.7 6.4 12 10.3 10.3Z" stroke="none"/>
+    <path d="M27.6 24.4 29.6 26.4 27.6 28.4 25.6 26.4Z" stroke="none" opacity=".8"/>
+  </symbol>
+  <symbol id="orn" viewBox="0 0 150 14">
+    <path d="M4 7H54M96 7H146" stroke="currentColor" stroke-width=".9" opacity=".55"/>
+    <path d="M62 4.2 64.8 7 62 9.8 59.2 7Z" fill="currentColor" opacity=".8"/><path d="M88 4.2 90.8 7 88 9.8 85.2 7Z" fill="currentColor" opacity=".8"/>
+    <path d="M75 1.5 80.5 7 75 12.5 69.5 7Z" fill="none" stroke="currentColor" stroke-width="1"/>
+    <path d="M75 4.6 77.4 7 75 9.4 72.6 7Z" fill="currentColor"/>
+  </symbol>
+  <symbol id="star8" viewBox="0 0 24 24"><path d="M12 1l2.2 6.3L21 5l-3.3 6.8 3.3 6.8-6.8-2.3L12 23l-2.2-6.7L3 18.6l3.3-6.8L3 5l6.8 2.3z" opacity=".9"/><circle cx="12" cy="11.8" r="2.2" fill="#f7f3e8"/></symbol>
+  <symbol id="seal" viewBox="0 0 100 100">
+    <ellipse cx="50" cy="57" rx="47" ry="44" fill="url(#wsh)"/>
+    <path d="M95 50c0 5-2.5 9-4 13.5s-2 9.5-4.5 13.5-7 6.5-10.5 9-7.5 5.5-12 7-9.5 1.5-14 1.5-9-.5-13.5-2-9-3.5-12.5-6.5-5.5-7.5-8.5-11-7.5-6.5-9-11 .5-9.5 1-14 1-9 2-13.5 1-9.5 3.5-13.5 6.5-7 10-9.5 9-4.5 13.5-6 9-4 13.5-4 9 1 13.5 2 9.5 2 13.5 4.5 7.5 6 10 10 3 9 4.5 13.5 4 9 4 14z" fill="url(#wx)"/>
+    <circle cx="50" cy="50" r="39.5" fill="none" style="stroke:var(--wax-d)" stroke-width="1.6" opacity=".55"/>
+    <circle cx="50" cy="50" r="31" fill="url(#wx2)"/>
+    <circle cx="49.3" cy="49.1" r="31" fill="none" stroke="#fff" stroke-opacity=".32" stroke-width="1.1"/>
+    <circle cx="50.6" cy="50.8" r="31" fill="none" style="stroke:var(--wax-d)" stroke-width="1.2"/>
+    <g style="fill:var(--wax-d)" opacity=".7">
+      <circle cx="50" cy="13.8" r=".95"/><circle cx="58.1" cy="14.7" r=".95"/><circle cx="65.7" cy="17.4" r=".95"/><circle cx="72.6" cy="21.7" r=".95"/><circle cx="78.3" cy="27.4" r=".95"/><circle cx="82.6" cy="34.3" r=".95"/><circle cx="85.3" cy="41.9" r=".95"/><circle cx="86.2" cy="50" r=".95"/><circle cx="85.3" cy="58.1" r=".95"/><circle cx="82.6" cy="65.7" r=".95"/><circle cx="78.3" cy="72.6" r=".95"/><circle cx="72.6" cy="78.3" r=".95"/><circle cx="65.7" cy="82.6" r=".95"/><circle cx="58.1" cy="85.3" r=".95"/><circle cx="50" cy="86.2" r=".95"/><circle cx="41.9" cy="85.3" r=".95"/><circle cx="34.3" cy="82.6" r=".95"/><circle cx="27.4" cy="78.3" r=".95"/><circle cx="21.7" cy="72.6" r=".95"/><circle cx="17.4" cy="65.7" r=".95"/><circle cx="14.7" cy="58.1" r=".95"/><circle cx="13.8" cy="50" r=".95"/><circle cx="14.7" cy="41.9" r=".95"/><circle cx="17.4" cy="34.3" r=".95"/><circle cx="21.7" cy="27.4" r=".95"/><circle cx="27.4" cy="21.7" r=".95"/><circle cx="34.3" cy="17.4" r=".95"/><circle cx="41.9" cy="14.7" r=".95"/>
+    </g>
+  </symbol>
+  <symbol id="pin" viewBox="0 0 24 24"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.3 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></symbol>
+  <symbol id="apple" viewBox="0 0 24 24"><path d="M16.4 12.6c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.2-2.8.9-3.5.9-.7 0-1.8-.8-3-.8-1.5 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7c1.3 0 2.1-1.1 2.8-2.3.9-1.3 1.3-2.6 1.3-2.6s-2.5-1-2.5-3.8zM14.1 5.8c.6-.8 1.1-1.8 1-2.8-.9 0-2 .6-2.7 1.4-.6.7-1.1 1.7-1 2.7 1 .1 2-.5 2.7-1.3z"/></symbol>
+  <symbol id="gcal" viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 16H5V9h14v11zM7 11h5v5H7z"/></symbol>
+  <symbol id="clock" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16zm.5-13H11v6l5.2 3.2.8-1.3-4.5-2.7z"/></symbol>
+  <symbol id="fork" viewBox="0 0 24 24"><path d="M11 9H9V2H7v7H5V2H3v7c0 2.1 1.7 3.8 3.8 4v9h2.5v-9C11.3 12.8 13 11.1 13 9V2h-2zm5-3v8h2.5v8H21V2c-2.8 0-5 2.2-5 4z"/></symbol>
+  <symbol id="wa" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.1.7a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .2-1.2c-.1-.2-.3-.2-.5-.3z"/></symbol>
+</svg>
+
+<div id="op" aria-hidden="true">
+  <div class="op-to">
+    <p class="op-k">دعوة حفل زفاف</p>
+    <p class="op-n"><span class="foil" data-cfg="title">حفل زواجي</span></p>
+    <p class="op-pm"><span data-cfg="dayLabel">يوم الخميس ليلة الجمعة</span><i></i><span><span data-cfg="dayNum">16</span> <span data-cfg="hijri">جمادى الآخرة 1448هـ</span></span></p>
+  </div>
+  <div class="env">
+    <i class="env-sh"></i>
+    <div class="env-back"></div>
+    <div class="env-card"><span class="ec-t">﷽</span><span class="ec-n">حفل زواجي</span><svg class="ec-o" viewBox="0 0 150 14"><use href="#orn"/></svg></div>
+    <svg class="env-pocket" viewBox="0 0 100 70" preserveAspectRatio="none">
+      <path d="M0 0 L0 70 L47.5 39.2 Q50 37.6 47.5 36 Z" fill="url(#pk)"/><path d="M100 0 L100 70 L52.5 39.2 Q50 37.6 52.5 36 Z" fill="url(#pk)"/>
+      <path d="M0 70 L46.2 35.2 Q50 32.6 53.8 35.2 L100 70 Z" fill="url(#fl)"/>
+      <path d="M0 70 L46.2 35.2 Q50 32.6 53.8 35.2 L100 70" fill="none" style="stroke:var(--fr1)" stroke-width="1" vector-effect="non-scaling-stroke"/>
+      <path d="M.3 0 V69.7 H99.7 V0" fill="none" style="stroke:var(--edge)" stroke-width="1" vector-effect="non-scaling-stroke"/>
+    </svg>
+    <div class="env-flap">
+      <svg viewBox="0 0 100 40.6" preserveAspectRatio="none">
+        <path d="M0 0 H100 L55.2 37 Q50 41.4 44.8 37 Z" style="fill:var(--shade2)" transform="translate(0 1.4)"/>
+        <path d="M0 0 H100 L55.2 37 Q50 41.4 44.8 37 Z" fill="url(#fl)"/>
+        <path d="M0 0 L44.8 37 Q50 41.4 55.2 37 L100 0" fill="none" style="stroke:var(--fr1)" stroke-width="1" vector-effect="non-scaling-stroke"/>
+        <path d="M9 2.4 L48 34.2 Q50 35.9 52 34.2 L91 2.4" fill="none" style="stroke:var(--fr2)" stroke-width="1" vector-effect="non-scaling-stroke"/>
+      </svg>
+    </div>
+    <div class="seal"><svg viewBox="0 0 100 100"><use href="#seal"/><use href="#star8" x="37" y="37" width="26" height="26" fill="#e2c173"/></svg></div>
+  </div>
+  <p class="op-hint">اضغط على الختم لفتح الدعوة</p>
+</div>
+
+<div class="root" lang="ar">
+<div class="bgp" aria-hidden="true"></div>
+<main class="page">
+
+  <article class="paper inv" aria-labelledby="hero">
+    <svg class="arch-star" viewBox="0 0 24 24" aria-hidden="true"><use href="#star8"/></svg>
+    <p class="dua foil">اللهم بارك لهما وبارك عليهما وأجمع بينهما في خير</p>
+    <div class="poem">
+      <p class="v"><span>مرحبا عد ما لاحت بروق المخيله</span><span>مرحبا بالنشامى في محل النشامى</span></p>
+      <p class="v"><span>مرحبا ومن تعنى قد غمرنا جميله</span><span>مرحبا ازكى من انسام النفل والخزامى</span></p>
+    </div>
+    <svg class="orn" viewBox="0 0 150 14"><use href="#orn"/></svg>
+    <p class="l-invite">أتشرف بدعوتكم لحضور حفل</p>
+    <div class="hero-w"><h1 class="hero foil" id="hero">زواجي</h1></div>
+    <svg class="orn" viewBox="0 0 150 14"><use href="#orn"/></svg>
+    <p class="l-mash">وذلك بمشيئة الله تعالى</p>
+    <p class="when">
+      <span class="w-eve" data-cfg="dayLabel">يوم الخميس ليلة الجمعة</span>
+      <span class="w-day"><b class="foil" data-cfg="dayNum">16</b></span>
+      <span class="w-hij" data-cfg="hijri">جمادى الآخرة 1448هـ</span>
+    </p>
+    <p class="l-hijri">الموافق <span data-cfg="greg">26 نوفمبر 2026م</span></p>
+    <p class="close-l">وبحضوركم تكتمل فرحتنا، ودامت دياركم عامرة بالأفراح</p>
+
+    <div class="det">
+      <h2 class="ttl" id="dt">تفاصيل الحفل</h2>
+      <dl class="prog" id="prog"></dl>
+      <div class="venue">
+        <span class="vi" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#pin"/></svg></span>
+        <div><p class="vn"><span class="sr">المكان: </span><span data-cfg="venue">قاعة الهدهدي رويال</span></p><p class="va" data-cfg="city">رابغ</p></div>
+      </div>
+      <div class="btns">
+        <a class="btn" id="gmaps" href="#" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><use href="#pin"/></svg>خرائط Google</a>
+        <a class="btn" id="amaps" href="#" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><use href="#apple"/></svg>خرائط Apple</a>
+      </div>
+    </div>
+
+    <svg class="cseal" viewBox="0 0 100 100"><use href="#seal"/><use href="#star8" x="37" y="37" width="26" height="26" fill="#e2c173"/></svg>
+  </article>
+
+</main>
+</div>
+
+<script>
+(function(){
+  'use strict';
+  /* ===== عدّل هذه القيم فقط ===== */
+  var CFG = {
+    title:    'حفل زواجي',
+    dayLabel: 'يوم الخميس ليلة الجمعة',
+    dayNum:   '16',
+    hijri:    'جمادى الآخرة 1448هـ',
+    greg:     '26 نوفمبر 2026م',
+    program:  [ {icon:'fork', k:'العشاء', v:'10:00 مساءً'}, {icon:'star8', k:'بعد العشاء', v:'العرضة السعودية واللعب البدواني'} ],
+    venue:    'قاعة الهدهدي رويال',
+    city:     'رابغ',
+    gmaps:    ''   // ضع رابط الموقع من خرائط Google هنا، وإلا يبحث بالاسم
+  };
+  /* ================================ */
+
+  function $(id){ return document.getElementById(id); }
+  function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];}); }
+  // fill text from CFG
+  var nodes=document.querySelectorAll('[data-cfg]');
+  for(var i=0;i<nodes.length;i++){ var k=nodes[i].getAttribute('data-cfg'); if(CFG[k]!=null) nodes[i].textContent=CFG[k]; }
+  document.title='دعوة '+CFG.title;
+
+  // program rows
+  var P=$('prog'), ph='';
+  for(var j=0;j<CFG.program.length;j++){ var r=CFG.program[j];
+    ph+='<div class="pr"><dt><svg viewBox="0 0 24 24"><use href="#'+esc(r.icon)+'"/></svg>'+esc(r.k)+'</dt><dd>'+esc(r.v)+'</dd></div>'; }
+  P.innerHTML=ph;
+
+  // links
+  var q=encodeURIComponent(CFG.venue+' '+CFG.city);
+  $('gmaps').href=CFG.gmaps||('https://www.google.com/maps/search/?api=1&query='+q);
+  $('amaps').href='https://maps.apple.com/?q='+q;
+  // the envelope: waits for a tap on the seal, then the card slides out and becomes the page
+  var op=$('op');
+  var reduce=false; try{ reduce=matchMedia('(prefers-reduced-motion: reduce)').matches; }catch(x){}
+  if(reduce || location.hash){ op.remove(); }
+  else{
+    var started=false, ended=false;
+    function end(){ if(ended) return; ended=true; op.classList.add('out'); setTimeout(function(){ op.remove(); },350); }
+    function go(){ if(started) return; started=true; op.classList.add('go'); setTimeout(end,1300); }
+    op.addEventListener('click',go);
+    document.addEventListener('keydown',function(ev){ if(ev.key==='Enter'||ev.key===' ') go(); });
+  }
+})();
+</script>
