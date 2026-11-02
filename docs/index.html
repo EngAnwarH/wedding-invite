@@ -86,7 +86,7 @@ button,input{font:inherit;color:inherit}
   background:radial-gradient(140% 60% at 50% 0%,var(--hi),transparent 70%),var(--paper);
   box-shadow:0 0 0 1px var(--edge),0 1px 1px var(--shade2),0 14px 28px -16px var(--shade),0 34px 70px -34px var(--shade)}
 /* البطاقة بقوس علوي (محراب) بدل الإطار المستطيل؛ ارتفاع القوس ثابت ليجري الدعاء على طوله */
-.inv{--rise:clamp(200px,58vw,260px);padding:calc(var(--rise) + 6px) 22px 54px;text-align:center;margin-top:10px;margin-bottom:40px;animation:settle .55s var(--ease) both;
+.inv{--rise:clamp(200px,58vw,260px);padding:calc(var(--rise) - 16px) 22px 54px;text-align:center;margin-top:10px;margin-bottom:40px;animation:settle .55s var(--ease) both;
   border-radius:50% 50% 6px 6px / var(--rise) var(--rise) 6px 6px}
 @media (min-width:700px){.inv{padding-left:42px;padding-right:42px}}
 .inv::before,.inv::after{content:'';position:absolute;pointer-events:none;border-radius:inherit}
