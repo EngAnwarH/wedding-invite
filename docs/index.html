@@ -73,7 +73,7 @@ button,input{font:inherit;color:inherit}
     mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56'%3E%3Cpath d='M28 3 53 28 28 53 3 28Z' fill='none' stroke='%23000' stroke-width='.8'/%3E%3Cpath d='M28 17 39 28 28 39 17 28Z' fill='none' stroke='%23000' stroke-width='.6'/%3E%3Ccircle cx='28' cy='28' r='1.6' fill='%23000'/%3E%3C/svg%3E") 0 0/56px 56px repeat}
 }
 .page{position:relative;z-index:1;max-width:480px;margin:0 auto;color:var(--text);
-  padding-block:28px calc(2.6rem + env(safe-area-inset-bottom,0px));padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+  padding-block:28px calc(8px + env(safe-area-inset-bottom,0px));padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 @media (min-width:700px){.page{padding-top:44px;max-width:680px}}
 
 /* الخلفية: صورة البشت (مقصوصة تحت الوجه) تحت طبقة خضراء شفافة */
@@ -86,7 +86,7 @@ button,input{font:inherit;color:inherit}
   background:radial-gradient(140% 60% at 50% 0%,var(--hi),transparent 70%),var(--paper);
   box-shadow:0 0 0 1px var(--edge),0 1px 1px var(--shade2),0 14px 28px -16px var(--shade),0 34px 70px -34px var(--shade)}
 /* البطاقة بقوس علوي (محراب) بدل الإطار المستطيل؛ ارتفاع القوس ثابت ليجري الدعاء على طوله */
-.inv{--rise:clamp(200px,58vw,260px);padding:calc(var(--rise) - 16px) 22px 54px;text-align:center;margin-top:10px;margin-bottom:40px;animation:settle .55s var(--ease) both;
+.inv{--rise:clamp(200px,58vw,260px);padding:calc(var(--rise) - 16px) 22px 48px;text-align:center;margin-top:10px;margin-bottom:32px;animation:settle .55s var(--ease) both;
   border-radius:50% 50% 6px 6px / var(--rise) var(--rise) 6px 6px}
 @media (min-width:700px){.inv{padding-left:42px;padding-right:42px}}
 .inv::before,.inv::after{content:'';position:absolute;pointer-events:none;border-radius:inherit}
@@ -424,6 +424,10 @@ button,input{font:inherit;color:inherit}
       t.setAttribute('transform','translate('+x.toFixed(2)+' '+y.toFixed(2)+') rotate('+ang.toFixed(2)+')');
       s+=ws[i]+gap;
     });
+    // the poem starts just under the lowest word of the dua, whatever the card width
+    var sb=svg.getBoundingClientRect(), mb=0;
+    ts.forEach(function(t){ mb=Math.max(mb, t.getBoundingClientRect().bottom-sb.top); });
+    if(mb>0) svg.parentNode.style.paddingTop=Math.round(mb+12)+'px';
   }
   layDua(); addEventListener('resize',layDua);
   try{ document.fonts.ready.then(layDua); }catch(x){}
