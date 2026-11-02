@@ -392,7 +392,8 @@ button,input{font:inherit;color:inherit}
   var DUA='اللهم بارك لهما وبارك عليهما وأجمع بينهما في خير'.split(' ');
   function layDua(){
     var svg=$('archDua'), g=$('duaWords'); if(!svg||!g) return;
-    var W=svg.clientWidth, H=svg.clientHeight; if(!W||!H) return;
+    // getBoundingClientRect: clientWidth is 0 for inline <svg> in some WebKit builds
+    var box=svg.getBoundingClientRect(), W=Math.round(box.width), H=Math.round(box.height); if(!W||!H) return;
     svg.setAttribute('viewBox','0 0 '+W+' '+H);
     if(!g.childNodes.length){ DUA.forEach(function(w){ var t=document.createElementNS('http://www.w3.org/2000/svg','text'); t.setAttribute('class','dua-t'); t.setAttribute('text-anchor','middle'); t.textContent=w; g.appendChild(t); }); }
     var ts=[].slice.call(g.childNodes), fs=parseFloat(getComputedStyle(ts[0]).fontSize)||22, gap=fs*0.34;
@@ -416,7 +417,8 @@ button,input{font:inherit;color:inherit}
     if(mb>0) svg.parentNode.style.paddingTop=Math.round(mb+12)+'px';
   }
   layDua(); addEventListener('resize',layDua);
-  try{ document.fonts.ready.then(layDua); }catch(x){}
+  // re-lay whenever a font finishes loading: fonts.ready can resolve before the Google stylesheet has even arrived
+  try{ document.fonts.ready.then(layDua); document.fonts.addEventListener('loadingdone',layDua); document.fonts.load("700 24px 'Aref Ruqaa'").then(layDua); }catch(x){}
 
   // program rows
   var P=$('prog'), ph='';

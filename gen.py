@@ -1,11 +1,12 @@
 """Generate one personalised invitation page per guest.
 
-usage: python gen.py guests.csv       (one guest name per line; a header row "guest"/"المدعو" is skipped; UTF-8)
+usage: python gen.py guests.xlsx      (or guests.csv; first column = guest name, one per row; a header row "guest"/"المدعو"/"الاسم" is skipped;
+       CSV may be UTF-8 or Windows-1256 as Excel saves it)
 Reads docs/index.html (the built page), writes docs/i/<code>/index.html for each guest,
 and keeps links.csv: guest,code,url,message.  Codes are stable across runs (reused from links.csv),
 so re-running never changes a link already sent.
 """
-import csv, html, pathlib, secrets, string, sys
+import csv, html, io, pathlib, secrets, string, sys
 
 ROOT = pathlib.Path(__file__).parent
 BASE = 'https://dawah-abdulrahman.vercel.app'
@@ -20,6 +21,23 @@ def message(url):
             'يسرّني ويشرّفني دعوتكم لحضور حفل زواجي، وذلك بمشيئة الله تعالى:\n\n'
             'تفاصيل الدعوة وموقع القاعة في الرابط:\n' + url)
 
+def read_names(src):
+    """First column of an .xlsx (first sheet) or a CSV; Excel on Arabic Windows saves CSV as cp1256, so fall back to it."""
+    src = pathlib.Path(src)
+    if src.suffix.lower() in ('.xlsx', '.xlsm'):
+        import openpyxl
+        ws = openpyxl.load_workbook(src, read_only=True, data_only=True).worksheets[0]
+        return [str(r[0]) for r in ws.iter_rows(values_only=True) if r and r[0] is not None]
+    raw = src.read_bytes()
+    for enc in ('utf-8-sig', 'cp1256'):
+        try:
+            text = raw.decode(enc); break
+        except UnicodeDecodeError:
+            continue
+    else:
+        sys.exit(f'{src}: not UTF-8 or Windows-1256; save it as "CSV UTF-8" from Excel')
+    return [r[0] for r in csv.reader(io.StringIO(text)) if r]
+
 def main(src):
     tpl = (ROOT / 'docs' / 'index.html').read_text(encoding='utf-8')
     assert '{{GUEST}}' in tpl, 'docs/index.html has no guest slot; rebuild it'
@@ -30,12 +48,11 @@ def main(src):
             for r in csv.DictReader(f):
                 known[r['guest']] = r['code']
     guests = []
-    with open(src, encoding='utf-8-sig', newline='') as f:
-        for r in csv.reader(f):
-            g = (r[0] if r else '').strip()
-            if not g or g in ('guest', 'المدعو') or g in guests:
-                continue
-            guests.append(g)
+    for g in read_names(src):
+        g = g.strip()
+        if not g or g in ('guest', 'المدعو', 'الاسم') or g in guests:
+            continue
+        guests.append(g)
     used = set(known.values())
     out = []
     for g in guests:
