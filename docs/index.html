@@ -16,7 +16,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Aref+Ruqaa:wght@700&family=IBM+Plex+Sans+Arabic:wght@400;500&display=swap">
 <style>
 /* Layout: one 480px cream arch-topped card on a deep emerald linen "table"; gold foil, green wax seal with a gold initial, sadu strips. */
 :root{
@@ -85,15 +85,16 @@ button,input{font:inherit;color:inherit}
 .paper{position:relative;isolation:isolate;border-radius:4px;color:var(--text);
   background:radial-gradient(140% 60% at 50% 0%,var(--hi),transparent 70%),var(--paper);
   box-shadow:0 0 0 1px var(--edge),0 1px 1px var(--shade2),0 14px 28px -16px var(--shade),0 34px 70px -34px var(--shade)}
-/* البطاقة بقوس علوي (محراب) بدل الإطار المستطيل */
-.inv{padding:84px 22px 54px;text-align:center;margin-top:10px;margin-bottom:40px;animation:settle .55s var(--ease) both;
-  border-radius:50% 50% 6px 6px / 24% 24% 6px 6px}
-@media (min-width:700px){.inv{padding:92px 42px 54px}}
+/* البطاقة بقوس علوي (محراب) بدل الإطار المستطيل؛ ارتفاع القوس ثابت ليجري الدعاء على طوله */
+.inv{--rise:clamp(200px,58vw,260px);padding:calc(var(--rise) + 6px) 22px 54px;text-align:center;margin-top:10px;margin-bottom:40px;animation:settle .55s var(--ease) both;
+  border-radius:50% 50% 6px 6px / var(--rise) var(--rise) 6px 6px}
+@media (min-width:700px){.inv{padding-left:42px;padding-right:42px}}
 .inv::before,.inv::after{content:'';position:absolute;pointer-events:none;border-radius:inherit}
 .inv::before{inset:10px;border:1px solid var(--fr1)}
 .inv::after{inset:15px;border:1px solid var(--fr2)}
-.inv .arch-star{position:absolute;top:28px;left:50%;width:22px;height:22px;margin-left:-11px;fill:var(--gold)}
-.dua{font:700 clamp(17px,4.8vw,21px)/1.8 var(--f-disp);margin:0 auto 12px;text-wrap:balance}
+/* الدعاء منحنيًا على طول القوس */
+.arch-dua{position:absolute;top:0;left:0;width:100%;height:var(--rise);overflow:visible;pointer-events:none}
+.dua-t{font:700 clamp(19px,5.6vw,27px)/1 'Aref Ruqaa',var(--f-disp);fill:var(--gold);direction:rtl}
 /* الأبيات: شطران متقابلان بعرض متساوٍ، وعلى الجوال كل شطر في سطر وسط البطاقة */
 .poem{display:grid;gap:0;margin:4px auto 0;font:400 clamp(14px,4.3vw,17px)/1.7 var(--f-disp);color:var(--text);justify-items:center;max-width:100%}
 .poem .v{display:grid;grid-template-columns:auto;justify-content:center;gap:0 18px;text-align:center;max-width:100%}
@@ -108,8 +109,6 @@ button,input{font:inherit;color:inherit}
 @media (max-width:599px){
   .poem .v span{white-space:normal;text-wrap:balance}
   .poem .v+.v{margin-top:6px}
-  .dua{max-width:15.5em;margin-inline:auto;transform:translateX(-2ch)}   /* سطران داخل القوس، مُزاحان حرفين لليسار */
-  .inv{padding-top:96px}
 }
 .hosts{display:flex;align-items:center;justify-content:center;gap:8px 14px;flex-wrap:wrap;font:700 16px/1.7 var(--f-disp);margin-bottom:8px;text-wrap:balance}
 .hosts i{width:6px;height:6px;background:var(--gold);transform:rotate(45deg);flex-shrink:0}
@@ -338,8 +337,10 @@ button,input{font:inherit;color:inherit}
 <main class="page">
 
   <article class="paper inv" aria-labelledby="hero">
-    <svg class="arch-star" viewBox="0 0 24 24" aria-hidden="true"><use href="#star8"/></svg>
-    <p class="dua foil">اللهم بارك لهما وبارك عليهما وأجمع بينهما في خير</p>
+    <svg class="arch-dua" id="archDua" aria-label="اللهم بارك لهما وبارك عليهما وأجمع بينهما في خير">
+      <path id="duaPath" fill="none"/>
+      <text class="dua-t"><textPath href="#duaPath" startOffset="50%" text-anchor="middle">اللهم بارك لهما وبارك عليهما وأجمع بينهما في خير</textPath></text>
+    </svg>
     <div class="poem">
       <p class="v"><span>مرحبا عد ما لاحت بروق المخيله</span><span>مرحبا بالنشامى في محل النشامى</span></p>
       <p class="v"><span>مرحبا ومن تعنى قد غمرنا جميله</span><span>مرحبا ازكى من انسام النفل والخزامى</span></p>
@@ -399,6 +400,18 @@ button,input{font:inherit;color:inherit}
   var nodes=document.querySelectorAll('[data-cfg]');
   for(var i=0;i<nodes.length;i++){ var k=nodes[i].getAttribute('data-cfg'); if(CFG[k]!=null) nodes[i].textContent=CFG[k]; }
   document.title='دعوة '+CFG.title;
+
+  // the dua runs along an elliptical arc that matches the card's arch
+  function layDua(){
+    var svg=$('archDua'), p=$('duaPath'); if(!svg||!p) return;
+    var W=svg.clientWidth, H=svg.clientHeight, pad=Math.round(Math.max(44, Math.min(60, W*0.13)));
+    if(!W||!H) return;
+    svg.setAttribute('viewBox','0 0 '+W+' '+H);
+    // the path runs left→right over the top; with direction:rtl the Arabic then reads correctly along it
+    p.setAttribute('d','M'+pad+' '+H+' A'+(W/2-pad)+' '+(H-pad)+' 0 0 1 '+(W-pad)+' '+H);
+  }
+  layDua(); addEventListener('resize',layDua);
+  try{ document.fonts.ready.then(layDua); }catch(x){}
 
   // program rows
   var P=$('prog'), ph='';
