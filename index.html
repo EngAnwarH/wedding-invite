@@ -72,7 +72,7 @@ button,input{font:inherit;color:inherit}
   background:radial-gradient(140% 60% at 50% 0%,var(--hi),transparent 70%),var(--paper);
   box-shadow:0 0 0 1px var(--edge),0 1px 1px var(--shade2),0 14px 28px -16px var(--shade),0 34px 70px -34px var(--shade)}
 /* البطاقة بقوس علوي (محراب) بدل الإطار المستطيل */
-.inv{padding:84px 30px 54px;text-align:center;margin-top:10px;margin-bottom:40px;animation:settle .55s var(--ease) both;
+.inv{padding:84px 22px 54px;text-align:center;margin-top:10px;margin-bottom:40px;animation:settle .55s var(--ease) both;
   border-radius:50% 50% 6px 6px / 24% 24% 6px 6px}
 @media (min-width:700px){.inv{padding:92px 42px 54px}}
 .inv::before,.inv::after{content:'';position:absolute;pointer-events:none;border-radius:inherit}
@@ -81,14 +81,22 @@ button,input{font:inherit;color:inherit}
 .inv .arch-star{position:absolute;top:28px;left:50%;width:22px;height:22px;margin-left:-11px;fill:var(--gold)}
 .dua{font:700 clamp(17px,4.8vw,21px)/1.8 var(--f-disp);margin:0 auto 12px;text-wrap:balance}
 /* الأبيات: شطران متقابلان بعرض متساوٍ، وعلى الجوال كل شطر في سطر وسط البطاقة */
-.poem{display:grid;gap:0;margin:4px auto 0;font:400 17px/1.6 var(--f-disp);color:var(--text);justify-items:center}
-.poem .v{display:grid;grid-template-columns:auto;justify-content:center;gap:0 18px;text-align:center}
-.poem .v span{display:block;white-space:nowrap}
-/* البيت الأول يمينًا حرفين والثاني يبقى، ثم الكتلة كلها تُزاح حرفًا لليسار فتتوسّط */
-.poem .v:first-child{transform:translateX(2ch)}
-.poem{transform:translateX(-2ch)}
-@media (min-width:600px){.poem .v{grid-template-columns:auto auto}}
-@media (max-width:360px){.poem{font-size:15px}}
+.poem{display:grid;gap:0;margin:4px auto 0;font:400 clamp(14px,4.3vw,17px)/1.7 var(--f-disp);color:var(--text);justify-items:center;max-width:100%}
+.poem .v{display:grid;grid-template-columns:auto;justify-content:center;gap:0 18px;text-align:center;max-width:100%}
+.poem .v span{display:block;white-space:nowrap;max-width:100%;overflow-wrap:anywhere}
+/* على الشاشة الواسعة: شطران متقابلان، البيت الأول يمينًا حرفين والكتلة تُزاح حرفين لليسار فتتوسّط */
+@media (min-width:600px){
+  .poem{font-size:17px;line-height:1.6;transform:translateX(-2ch)}
+  .poem .v{grid-template-columns:auto auto}
+  .poem .v:first-child{transform:translateX(2ch)}
+}
+/* على الجوال: كل شطر في سطر وسط البطاقة، وإن ضاق العرض ينكسر بدل أن يخرج */
+@media (max-width:599px){
+  .poem .v span{white-space:normal;text-wrap:balance}
+  .poem .v+.v{margin-top:6px}
+  .dua{max-width:15.5em;margin-inline:auto}   /* سطران داخل القوس بدل سطر يخرج عن حدّيه */
+  .inv{padding-top:96px}
+}
 .hosts{display:flex;align-items:center;justify-content:center;gap:8px 14px;flex-wrap:wrap;font:700 16px/1.7 var(--f-disp);margin-bottom:8px;text-wrap:balance}
 .hosts i{width:6px;height:6px;background:var(--gold);transform:rotate(45deg);flex-shrink:0}
 .l-of{font:400 16px/1.5 var(--f-disp);color:var(--muted);margin:2px 0}
