@@ -16,8 +16,8 @@ html = f'''<!doctype html>
 <title>{title}</title>
 <meta property="og:title" content="{title}">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://enganwarh.github.io/wedding-invite/share.jpg">
-<meta property="og:url" content="https://enganwarh.github.io/wedding-invite/">
+<meta property="og:image" content="https://dawah-abdulrahman.vercel.app/share.jpg">
+<meta property="og:url" content="https://dawah-abdulrahman.vercel.app/">
 <style>html{{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}}body{{margin:0}}img{{max-width:100%}}[hidden]{{display:none!important}}</style>
 </head>
 <body>
