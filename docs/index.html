@@ -338,8 +338,7 @@ button,input{font:inherit;color:inherit}
 
   <article class="paper inv" aria-labelledby="hero">
     <svg class="arch-dua" id="archDua" aria-label="اللهم بارك لهما وبارك عليهما وأجمع بينهما في خير">
-      <path id="duaPath" fill="none"/>
-      <text class="dua-t"><textPath href="#duaPath" startOffset="50%" text-anchor="middle">اللهم بارك لهما وبارك عليهما وأجمع بينهما في خير</textPath></text>
+      <g id="duaWords"></g>
     </svg>
     <div class="poem">
       <p class="v"><span>مرحبا عد ما لاحت بروق المخيله</span><span>مرحبا بالنشامى في محل النشامى</span></p>
@@ -401,14 +400,30 @@ button,input{font:inherit;color:inherit}
   for(var i=0;i<nodes.length;i++){ var k=nodes[i].getAttribute('data-cfg'); if(CFG[k]!=null) nodes[i].textContent=CFG[k]; }
   document.title='دعوة '+CFG.title;
 
-  // the dua runs along an elliptical arc that matches the card's arch
+  // the dua runs along an elliptical arc that matches the card's arch.
+  // Each word is its own <text>, placed and rotated on the arc from right to left, so the order
+  // never depends on how a browser handles RTL text on an SVG textPath (Safari mirrors it).
+  var DUA='اللهم بارك لهما وبارك عليهما وأجمع بينهما في خير'.split(' ');
   function layDua(){
-    var svg=$('archDua'), p=$('duaPath'); if(!svg||!p) return;
-    var W=svg.clientWidth, H=svg.clientHeight, pad=Math.round(Math.max(44, Math.min(60, W*0.13)));
-    if(!W||!H) return;
+    var svg=$('archDua'), g=$('duaWords'); if(!svg||!g) return;
+    var W=svg.clientWidth, H=svg.clientHeight; if(!W||!H) return;
     svg.setAttribute('viewBox','0 0 '+W+' '+H);
-    // the path runs left→right over the top; with direction:rtl the Arabic then reads correctly along it
-    p.setAttribute('d','M'+pad+' '+H+' A'+(W/2-pad)+' '+(H-pad)+' 0 0 1 '+(W-pad)+' '+H);
+    if(!g.childNodes.length){ DUA.forEach(function(w){ var t=document.createElementNS('http://www.w3.org/2000/svg','text'); t.setAttribute('class','dua-t'); t.setAttribute('text-anchor','middle'); t.textContent=w; g.appendChild(t); }); }
+    var ts=[].slice.call(g.childNodes), fs=parseFloat(getComputedStyle(ts[0]).fontSize)||22, gap=fs*0.34;
+    var pad=Math.round(Math.max(44, Math.min(60, W*0.13))), cx=W/2, cy=H, rx=W/2-pad, ry=H-pad;
+    // arc-length table from the right end (angle 0) over the top to the left end (angle π)
+    var N=400, pts=[], len=[0];
+    for(var k=0;k<=N;k++){ var a=Math.PI*k/N; pts.push([cx+rx*Math.cos(a), cy-ry*Math.sin(a)]); if(k){ var d=pts[k-1]; len.push(len[k-1]+Math.hypot(pts[k][0]-d[0], pts[k][1]-d[1])); } }
+    var L=len[N], ws=ts.map(function(t){ return t.getComputedTextLength(); }), T=ws.reduce(function(a,b){return a+b;},0)+gap*(ws.length-1);
+    var s=(L-T)/2;  // first (rightmost) word starts here, measured from the right end
+    ts.forEach(function(t,i){
+      var m=s+ws[i]/2, k=0; while(k<N && len[k+1]<m) k++;
+      var f=(m-len[k])/((len[k+1]-len[k])||1), p0=pts[k], p1=pts[k+1];
+      var x=p0[0]+(p1[0]-p0[0])*f, y=p0[1]+(p1[1]-p0[1])*f;
+      var ang=Math.atan2(p0[1]-p1[1], p0[0]-p1[0])*180/Math.PI;  // tangent pointing to the right
+      t.setAttribute('transform','translate('+x.toFixed(2)+' '+y.toFixed(2)+') rotate('+ang.toFixed(2)+')');
+      s+=ws[i]+gap;
+    });
   }
   layDua(); addEventListener('resize',layDua);
   try{ document.fonts.ready.then(layDua); }catch(x){}
