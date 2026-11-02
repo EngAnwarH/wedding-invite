@@ -94,6 +94,14 @@ button,input{font:inherit;color:inherit}
 .l-of{font:400 16px/1.5 var(--f-disp);color:var(--muted);margin:2px 0}
 .bride{font:700 clamp(1.3rem,5.6vw,1.7rem)/1.4 var(--f-disp);overflow-wrap:anywhere;text-wrap:balance}
 .close-l{margin-top:16px;font:400 16px/1.8 var(--f-disp);color:var(--muted);text-wrap:balance}
+/* اسم المدعو (أعلى) والداعي (أسفل) في الصفحات المخصّصة */
+.guest-w{margin:0 0 10px}
+.guest-k{font:400 16px/1.5 var(--f-disp);color:var(--muted)}
+.guest{font:700 clamp(1.35rem,5.8vw,1.7rem)/1.4 var(--f-disp);overflow-wrap:anywhere;text-wrap:balance}
+.guest-s{font:400 15px/1.5 var(--f-disp);color:var(--muted)}
+.inviter{margin-top:14px;font:700 18px/1.6 var(--f-disp);color:var(--gold)}
+.inviter span{font-weight:400;color:var(--muted);margin-inline-end:8px}
+.inviter span::after{content:':'}
 /* تفاصيل الحفل داخل البطاقة */
 .det{margin:24px 4px 0;padding-top:20px;border-top:1px solid var(--ln2);text-align:start}
 .det .ttl{margin-bottom:10px}
@@ -318,6 +326,11 @@ button,input{font:inherit;color:inherit}
       <p class="v"><span>مرحبا ومن تعنى قد غمرنا جميله</span><span>مرحبا ازكى من انسام النفل والخزامى</span></p>
     </div>
     <svg class="orn" viewBox="0 0 150 14"><use href="#orn"/></svg>
+    <div class="guest-w" id="guestW" hidden>
+      <p class="guest-k">الأكرم</p>
+      <p class="guest foil" id="guestName">{{GUEST}}</p>
+      <p class="guest-s">حفظه الله</p>
+    </div>
     <p class="l-invite">أتشرف بدعوتكم لحضور حفل</p>
     <div class="hero-w"><h1 class="hero foil" id="hero">زواجي</h1></div>
     <svg class="orn" viewBox="0 0 150 14"><use href="#orn"/></svg>
@@ -329,6 +342,7 @@ button,input{font:inherit;color:inherit}
     </p>
     <p class="l-hijri">الموافق <span data-cfg="greg">26 نوفمبر 2026م</span></p>
     <p class="close-l">وبحضوركم تكتمل فرحتنا، ودامت دياركم عامرة بالأفراح</p>
+    <p class="inviter" id="inviterW" hidden><span>الداعي</span><b id="inviterName">{{INVITER}}</b></p>
 
     <div class="det">
       <h2 class="ttl" id="dt">تفاصيل الحفل</h2>

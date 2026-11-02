@@ -3,3 +3,6 @@ whatsapp-message.txt
 # Local Netlify folder
 .netlify
 .vercel
+docs/i/
+links.csv
+guests*.csv
