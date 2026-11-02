@@ -9,7 +9,7 @@ import csv, html, pathlib, secrets, string, sys, urllib.parse
 
 ROOT = pathlib.Path(__file__).parent
 BASE = 'https://dawah-abdulrahman.vercel.app'
-HONORIFIC = 'الأكرم'
+HONORIFIC = 'العزيز'
 ALPHABET = string.ascii_lowercase + string.digits
 
 def code():
@@ -43,9 +43,9 @@ def main(src):
             c = code()
             while c in used: c = code()
             used.add(c); known[(guest, inviter)] = c
-        page = (tpl.replace('<div class="guest-w" id="guestW" hidden>', '<div class="guest-w" id="guestW">')
-                   .replace('<p class="inviter" id="inviterW" hidden>', '<p class="inviter" id="inviterW">')
-                   .replace('>الأكرم<', '>' + html.escape(HONORIFIC) + '<')
+        page = (tpl.replace('<p class="op-g" id="guestW" hidden>', '<p class="op-g" id="guestW">')
+                   .replace('<p class="op-inv" id="inviterW" hidden>', '<p class="op-inv" id="inviterW">')
+                   .replace('id="guestW">العزيز<', 'id="guestW">' + html.escape(HONORIFIC) + '<')
                    .replace('{{GUEST}}', html.escape(guest))
                    .replace('{{INVITER}}', html.escape(inviter))
                    .replace('url("bg.jpg")', 'url("../../bg.jpg")')
