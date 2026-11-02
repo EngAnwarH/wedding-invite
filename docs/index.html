@@ -108,11 +108,14 @@ button,input{font:inherit;color:inherit}
 .l-of{font:400 16px/1.5 var(--f-disp);color:var(--muted);margin:2px 0}
 .bride{font:700 clamp(1.3rem,5.6vw,1.7rem)/1.4 var(--f-disp);overflow-wrap:anywhere;text-wrap:balance}
 .close-l{margin-top:16px;font:400 16px/1.8 var(--f-disp);color:var(--muted);text-wrap:balance}
-/* اسم المدعو (أعلى الغلاف) والداعي (أسفله) في الصفحات المخصّصة */
-.op-g{font:400 15px/1.5 var(--f-ui);color:var(--muted);margin-bottom:14px}
-.op-g b{display:block;font:700 clamp(22px,6.6vw,30px)/1.4 var(--f-disp);color:var(--text);overflow-wrap:anywhere;text-wrap:balance}
-.op-inv{font:400 14px/1.6 var(--f-ui);color:var(--muted);text-align:center;margin-top:4px}
-.op-inv b{font:700 19px/1.4 var(--f-disp);color:var(--gold);margin-inline-start:8px}
+/* اسم المدعو (أعلى وجه الظرف) والداعي (أسفله) في الصفحات المخصّصة */
+.env-g,.env-inv{left:7%;right:7%;z-index:6;margin:0;text-align:center;pointer-events:none;transition:opacity .2s;
+  font:400 11px/1.4 var(--f-ui);color:var(--tm);text-shadow:0 1px 2px rgba(0,0,0,.35)}
+.env-g{top:6%}
+.env-g b{display:block;font:700 clamp(17px,5.2vw,22px)/1.3 var(--f-disp);color:var(--tt);overflow-wrap:anywhere;text-wrap:balance}
+.env-inv{bottom:5%}
+.env-inv b{font:700 16px/1.4 var(--f-disp);color:var(--tgold);margin-inline-start:6px}
+#op.go .env-g,#op.go .env-inv{opacity:0}
 /* تفاصيل الحفل داخل البطاقة */
 .det{margin:24px 4px 0;padding-top:20px;border-top:1px solid var(--ln2);text-align:start}
 .det .ttl{margin-bottom:10px}
@@ -237,8 +240,7 @@ button,input{font:inherit;color:inherit}
 .env-card .ec-n{font:700 15px/1.4 var(--f-disp);color:var(--text);position:relative}
 .env-card .ec-o{width:90px;height:10px;color:var(--gold);position:relative}
 .op-hint{font:400 14px/1.6 var(--f-ui);color:var(--muted);text-align:center;margin-top:18px;transition:opacity .2s}
-#op.go .op-hint,#op.go .op-inv{opacity:0}
-.op-inv{transition:opacity .2s}
+#op.go .op-hint{opacity:0}
 .env-pocket{inset:0;width:100%;height:100%;z-index:3;overflow:visible;transition:opacity .18s ease .92s}
 .env-flap{left:0;top:0;width:100%;height:58%;z-index:4;transform-origin:50% 0;transform-style:preserve-3d;transition:transform .36s cubic-bezier(.45,0,.55,1) .3s,z-index 0s .48s}
 .env-flap svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
@@ -298,7 +300,6 @@ button,input{font:inherit;color:inherit}
 
 <div id="op" aria-hidden="true">
   <div class="op-to">
-    <p class="op-g" id="guestW" hidden>العزيز<b id="guestName">{{GUEST}}</b></p>
     <p class="op-k">دعوة حفل زفاف</p>
     <p class="op-n"><span class="foil" data-cfg="title">حفل زواجي</span></p>
     <p class="op-pm"><span data-cfg="dayLabel">يوم الخميس ليلة الجمعة</span><i></i><span><span data-cfg="dayNum">16</span> <span data-cfg="hijri">جمادى الآخرة 1448هـ</span></span></p>
@@ -322,9 +323,10 @@ button,input{font:inherit;color:inherit}
       </svg>
     </div>
     <div class="seal"><svg viewBox="0 0 100 100"><use href="#seal"/><use href="#star8" x="37" y="37" width="26" height="26" fill="#e2c173"/></svg></div>
+    <p class="env-g" id="guestW" hidden>العزيز<b id="guestName">{{GUEST}}</b></p>
+    <p class="env-inv" id="inviterW" hidden>الداعي<b id="inviterName">{{INVITER}}</b></p>
   </div>
   <p class="op-hint">اضغط على الختم لفتح الدعوة</p>
-  <p class="op-inv" id="inviterW" hidden>الداعي<b id="inviterName">{{INVITER}}</b></p>
 </div>
 
 <div class="root" lang="ar">

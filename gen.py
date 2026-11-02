@@ -43,8 +43,8 @@ def main(src):
             c = code()
             while c in used: c = code()
             used.add(c); known[(guest, inviter)] = c
-        page = (tpl.replace('<p class="op-g" id="guestW" hidden>', '<p class="op-g" id="guestW">')
-                   .replace('<p class="op-inv" id="inviterW" hidden>', '<p class="op-inv" id="inviterW">')
+        page = (tpl.replace('<p class="env-g" id="guestW" hidden>', '<p class="env-g" id="guestW">')
+                   .replace('<p class="env-inv" id="inviterW" hidden>', '<p class="env-inv" id="inviterW">')
                    .replace('id="guestW">العزيز<', 'id="guestW">' + html.escape(HONORIFIC) + '<')
                    .replace('{{GUEST}}', html.escape(guest))
                    .replace('{{INVITER}}', html.escape(inviter))
